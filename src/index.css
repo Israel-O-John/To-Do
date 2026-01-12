@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .mobile-nav {
+    @apply flex gap-4 uppercase items-center text-lg;
+  }
+
+  .task-inp {
+    @apply py-[10px] px-1 border border-gray-300 flex items-center gap-3 rounded-lg w-[30%] md:min-w-0;
+  }
+}
