@@ -88,8 +88,8 @@ function AddTask() {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <Button>Cancel</Button>
-        <button onClick={handleAdd}>Add</button>
+        <Button handleClose={handleClose}>Cancel</Button>
+        <Button handleAdd={handleAdd}>Add</Button>
       </div>
     </div>
   );
