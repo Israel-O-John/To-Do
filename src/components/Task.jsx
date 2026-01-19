@@ -1,6 +1,10 @@
-function Task({ task }) {
+function Task({ task, onClick }) {
+  // console.log(task);
   return (
-    <div className="py-4 px-6 bg-gray-50 border-b border-b-gray-200 flex items-center justify-between cursor-pointer">
+    <div
+      onClick={onClick}
+      className="py-4 px-6 bg-gray-50 border-b border-b-gray-200 flex items-center justify-between cursor-pointer"
+    >
       <div className="flex items-center gap-3">
         <input
           type="checkbox"

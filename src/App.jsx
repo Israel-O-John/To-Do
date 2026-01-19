@@ -5,14 +5,31 @@ import Main from "./components/Main";
 
 // 1. Create context
 export const Todos = createContext();
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 function App() {
   const [createTask, setCreateTask] = useState(false);
+  const [taskDetail, setTaskDetail] = useState(false);
   const [taskComponent, setTaskComponent] = useState(function () {
     const tasksData = localStorage.getItem("tasks");
 
     return tasksData ? JSON.parse(tasksData) : [];
   });
+
+  const [selectedId, setSelectedId] = useState("");
 
   useEffect(
     function () {
@@ -29,6 +46,11 @@ function App() {
         setCreateTask,
         taskComponent,
         setTaskComponent,
+        months,
+        selectedId,
+        setSelectedId,
+        taskDetail,
+        setTaskDetail,
       }}
     >
       <Header />

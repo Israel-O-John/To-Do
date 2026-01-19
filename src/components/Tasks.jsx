@@ -27,7 +27,8 @@ const theTasks = [
 function Tasks() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { taskComponent } = useContext(Todos);
+  const { taskComponent, setSelectedId, setTaskDetail, setCreateTask } =
+    useContext(Todos);
 
   const totalItems = taskComponent.length;
   const itemsPerWindow = 4;
@@ -67,6 +68,13 @@ function Tasks() {
     setCurrentPage(currentPage + 1);
   }
 
+  // Start from here
+  function handleTaskClick(task) {
+    setCreateTask(true);
+    setTaskDetail(true);
+    setSelectedId(task.id);
+  }
+
   // Pagination logic
   const range = 1;
 
@@ -92,7 +100,11 @@ function Tasks() {
           </h3>
           <div className="space-y-4">
             {itemsDisplay.map((task) => (
-              <Task task={task} key={task.id} />
+              <Task
+                task={task}
+                key={task.id}
+                onClick={() => handleTaskClick(task)}
+              />
             ))}
           </div>
 

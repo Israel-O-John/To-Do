@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { Todos } from "../App";
+
+import { useContext, useState } from "react";
 
 import rightIcon from "../assets/chevron-right.svg";
 import leftIcon from "../assets/chevron left.svg";
@@ -8,20 +10,7 @@ function Calendar() {
   const [year, setYear] = useState(TODAY.getFullYear());
   const [month, setMonth] = useState(TODAY.getMonth());
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const { months } = useContext(Todos);
 
   const monthShort = [
     "Jan",
