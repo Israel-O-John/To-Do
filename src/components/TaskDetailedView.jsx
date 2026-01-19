@@ -8,19 +8,33 @@ import clockIcon from "../assets/clock icon.svg";
 import { useContext } from "react";
 
 function TaskDetailedView() {
-  const { taskComponent, months, setTaskDetail, setCreateTask, selectedId } =
-    useContext(Todos);
+  const {
+    taskComponent,
+    months,
+    setTaskDetail,
+    setCreateTask,
+    selectedId,
+    setTaskComponent,
+    setEditTask,
+  } = useContext(Todos);
 
   const currentTask = taskComponent.find((task) => task.id === selectedId);
 
   const date = new Date(currentTask.id);
 
   function handleDelete() {
-    // console.log("Love");
+    const taskComponentNew = taskComponent.filter(
+      (task) => task.id !== selectedId
+    );
+    setTaskComponent([...taskComponentNew]);
+    handleClose();
   }
 
   function handleEdit() {
     // console.log("Hate");
+    setEditTask(true);
+    setTaskDetail(false);
+    console.log("love");
   }
 
   function handleClose() {

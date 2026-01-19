@@ -23,6 +23,7 @@ const months = [
 function App() {
   const [createTask, setCreateTask] = useState(false);
   const [taskDetail, setTaskDetail] = useState(false);
+  const [editTask, setEditTask] = useState(false);
   const [taskComponent, setTaskComponent] = useState(function () {
     const tasksData = localStorage.getItem("tasks");
 
@@ -51,6 +52,8 @@ function App() {
         setSelectedId,
         taskDetail,
         setTaskDetail,
+        editTask,
+        setEditTask,
       }}
     >
       <Header />
