@@ -10,22 +10,7 @@ function Calendar() {
   const [year, setYear] = useState(TODAY.getFullYear());
   const [month, setMonth] = useState(TODAY.getMonth());
 
-  const { months } = useContext(Todos);
-
-  const monthShort = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const { months, monthsShort } = useContext(Todos);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -103,7 +88,7 @@ function Calendar() {
       <div className="flex items-center justify-between">
         <div className="py-2 px-4 border border-gray-300 rounded-lg shadow-sm w-[75%]">
           <p className="font-secondaryFont font-normal text-base text-gray-900">
-            {monthShort[TODAY.getMonth()]} {TODAY.getDate()},{" "}
+            {monthsShort[TODAY.getMonth()]} {TODAY.getDate()},{" "}
             {TODAY.getFullYear()}
           </p>
         </div>

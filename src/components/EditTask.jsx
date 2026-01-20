@@ -9,10 +9,24 @@ import clockIcon from "../assets/clock icon.svg";
 import notificationBell from "../assets/bell-03.svg";
 
 function EditTask() {
-  const { taskComponent, selectedId } = useContext(Todos);
+  const { taskComponent, selectedId, setCreateTask, setEditTask, monthsShort } =
+    useContext(Todos);
+  const [selectedTask, setSeletedTask] = useState(
+    taskComponent.filter((task) => task.id === selectedId)
+  );
+  const [taskDate, setTaskDate] = useState(new Date(selectedTask[0].id));
+  const [taskTitle, setTaskTitle] = useState(selectedTask[0].title);
+  const [taskStartTime, setTaskStartTime] = useState(selectedTask[0].startTime);
+  const [taskCompleteTime, setTaskCompleteTime] = useState(
+    selectedTask[0].completeTime
+  );
 
-  const selectedTask = taskComponent.filter((task) => task.id === selectedId);
-  console.log(selectedTask);
+  function handleClose() {
+    setCreateTask(false);
+    setEditTask(false);
+  }
+
+  console.log(taskDate);
 
   return (
     <div className="w-full md:w-full mt-auto bg-white flex flex-col gap-4 p-6 rounded-tr-3xl rounded-tl-3xl md:rounded-lg border border-gray-100 shadow-xl">
@@ -20,7 +34,12 @@ function EditTask() {
         <h3 className="text-lg font-semibold text-gray-900 font-secondaryFont">
           Edit Task
         </h3>
-        <img src={closeIcon} alt="Close Icon" className="" />
+        <img
+          src={closeIcon}
+          alt="Close Icon"
+          className="cursor-pointer"
+          onClick={handleClose}
+        />
       </div>
       <div className="min-w-80 md:min-w-0 min-h-36 w-full">
         <textarea
@@ -29,21 +48,34 @@ function EditTask() {
           className="w-full py-3 px-[14px] text-gray-900 border border-gray-300 rounded-lg focus:outline-none"
           rows="5"
           placeholder="Create wireframe"
-        >
-          {selectedTask.title}
-        </textarea>
+          value={taskTitle}
+          onChange={() => setTaskTitle(e.target.value)}
+        ></textarea>
       </div>
-      <div className="flex items-center justify-between *:py-[10px] *:px-4 *:border *:border-gray-300 *:flex *:items-center *:gap-3 *:rounded-lg *:w-[30%] md:*:min-w-0">
-        <div>
-          <img src={calendarIcon} alt="calendar icon" />
+      <div className="flex items-center justify-between ">
+        <div className="task-inp">
+          <div className="w-3">
+            <img src={calendarIcon} alt="calendar icon" className="w-full" />
+          </div>
+          <p className="text-sm">
+            {taskDate.getDate()} {monthsShort[taskDate.getMonth()]}
+          </p>
         </div>
-        <div>
-          {/* <img src={clockIcon} alt="clock icon" /> */}
-          <p>{selectedTask.startTime}</p>
+        <div className="task-inp">
+          <input
+            type="time"
+            className="text-sm"
+            value={taskStartTime}
+            onChange={(e) => setTaskStartTime(e.target.value)}
+          />
         </div>
-        <div>
-          {/* <img src={clockIcon} alt="clock icon" /> */}
-          <p>{selectedTask.completTime}</p>
+        <div className="task-inp">
+          <input
+            type="time"
+            className="text-sm"
+            value={taskCompleteTime}
+            onChange={(e) => setTaskCompleteTime(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex items-center justify-between">

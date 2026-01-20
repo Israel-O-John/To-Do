@@ -20,6 +20,20 @@ const months = [
   "December",
 ];
 
+const monthsShort = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function App() {
   const [createTask, setCreateTask] = useState(false);
   const [taskDetail, setTaskDetail] = useState(false);
@@ -48,6 +62,7 @@ function App() {
         taskComponent,
         setTaskComponent,
         months,
+        monthsShort,
         selectedId,
         setSelectedId,
         taskDetail,
