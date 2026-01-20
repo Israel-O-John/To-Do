@@ -85,9 +85,9 @@ function Calendar() {
         />
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
         <div className="py-2 px-4 border border-gray-300 rounded-lg shadow-sm w-[75%]">
-          <p className="font-secondaryFont font-normal text-base text-gray-900">
+          <p className="font-secondaryFont font-normal text-sm text-gray-900">
             {monthsShort[TODAY.getMonth()]} {TODAY.getDate()},{" "}
             {TODAY.getFullYear()}
           </p>
@@ -101,7 +101,7 @@ function Calendar() {
         {days.map((day) => (
           <div
             key={day}
-            className="font-secondaryFont text-center text-sm font-medium text-gray-700 "
+            className="font-secondaryFont text-center text-xs font-medium text-gray-700 "
           >
             {day}
           </div>
@@ -109,13 +109,13 @@ function Calendar() {
         {cells.map((cell, index) => (
           <div
             key={index}
-            className={`text-center py-2 px-1 rounded-3xl${
+            className={`text-center py-1 px-1 rounded-3xl${
               cell.type !== "current"
-                ? "font-secondaryFont text-sm text-gray-500 cursor-pointer"
+                ? "font-secondaryFont text-xs text-gray-500 cursor-pointer"
                 : ""
-            } font-secondaryFont text-sm text-gray-700 cursor-pointer ${
+            } font-secondaryFont text-xs text-gray-700 cursor-pointer ${
               cell.isToday
-                ? "text-sm font-secondaryFont font-medium text-white bg-button-blue-active"
+                ? "text-xs font-secondaryFont font-medium text-white bg-button-blue-active"
                 : ""
             }`}
           >

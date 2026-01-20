@@ -4,13 +4,12 @@ function Button({
   handleClose,
   handleEdit,
   handleDelete,
+  handleCancel,
+  handleSave,
 }) {
   if (handleAdd) {
     return (
-      <button
-        className="text-base font-semibold font-secondaryFont text-gray-700 py-3 px-5 rounded-md border border-gray-300 bg-white hover:text-white hover:bg-button-blue w-[49%] transition-all duration-300"
-        onClick={handleAdd}
-      >
+      <button className="btn" onClick={handleAdd}>
         {children}
       </button>
     );
@@ -18,10 +17,7 @@ function Button({
 
   if (handleClose) {
     return (
-      <button
-        className="text-base font-semibold font-secondaryFont text-gray-700 py-3 px-5 rounded-md border border-gray-300 bg-white hover:text-white hover:bg-button-blue w-[49%] transition-all duration-300"
-        onClick={handleClose}
-      >
+      <button className="btn" onClick={handleClose}>
         {children}
       </button>
     );
@@ -29,10 +25,7 @@ function Button({
 
   if (handleEdit) {
     return (
-      <button
-        className="text-base font-semibold font-secondaryFont text-gray-700 py-3 px-5 rounded-md border border-gray-300 bg-white hover:text-white hover:bg-button-blue w-[49%] transition-all duration-300"
-        onClick={handleEdit}
-      >
+      <button className="btn" onClick={handleEdit}>
         {children}
       </button>
     );
@@ -40,10 +33,23 @@ function Button({
 
   if (handleDelete) {
     return (
-      <button
-        className="text-base font-semibold font-secondaryFont text-gray-700 py-3 px-5 rounded-md border border-gray-300 bg-white hover:text-white hover:bg-button-blue w-[49%] transition-all duration-300"
-        onClick={handleDelete}
-      >
+      <button className="btn" onClick={handleDelete}>
+        {children}
+      </button>
+    );
+  }
+
+  if (handleCancel) {
+    return (
+      <button className="btn" onClick={handleCancel}>
+        {children}
+      </button>
+    );
+  }
+
+  if (handleSave) {
+    return (
+      <button className="btn" onClick={handleSave}>
         {children}
       </button>
     );

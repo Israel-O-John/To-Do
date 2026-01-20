@@ -20,7 +20,7 @@ function AddTask() {
       completeTime: endTime,
       id: new Date(),
     };
-    setTaskComponent((tasks) => [...tasks, newTask]);
+    setTaskComponent((tasks) => [newTask, ...tasks]);
 
     setTaskDetails("");
     setStartTime("10:30");

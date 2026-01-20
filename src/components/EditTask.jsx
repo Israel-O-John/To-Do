@@ -9,8 +9,14 @@ import clockIcon from "../assets/clock icon.svg";
 import notificationBell from "../assets/bell-03.svg";
 
 function EditTask() {
-  const { taskComponent, selectedId, setCreateTask, setEditTask, monthsShort } =
-    useContext(Todos);
+  const {
+    taskComponent,
+    setTaskComponent,
+    selectedId,
+    setCreateTask,
+    setEditTask,
+    monthsShort,
+  } = useContext(Todos);
   const [selectedTask, setSeletedTask] = useState(
     taskComponent.filter((task) => task.id === selectedId)
   );
@@ -26,7 +32,22 @@ function EditTask() {
     setEditTask(false);
   }
 
-  console.log(taskDate);
+  function handleSave() {
+    const taskUpdate = {
+      title: taskTitle,
+      startTime: taskStartTime,
+      completeTime: taskCompleteTime,
+      id: new Date(),
+    };
+
+    const updatedTasks = taskComponent.filter((task) => task.id !== selectedId);
+    setTaskComponent([taskUpdate, ...updatedTasks]);
+  }
+
+  function handleCancel() {
+    setCreateTask(false);
+    setEditTask(false);
+  }
 
   return (
     <div className="w-full md:w-full mt-auto bg-white flex flex-col gap-4 p-6 rounded-tr-3xl rounded-tl-3xl md:rounded-lg border border-gray-100 shadow-xl">
@@ -49,7 +70,7 @@ function EditTask() {
           rows="5"
           placeholder="Create wireframe"
           value={taskTitle}
-          onChange={() => setTaskTitle(e.target.value)}
+          onChange={(e) => setTaskTitle(e.target.value)}
         ></textarea>
       </div>
       <div className="flex items-center justify-between ">
@@ -88,8 +109,8 @@ function EditTask() {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <Button>Cancel</Button>
-        <Button>Save</Button>
+        <Button handleCancel={handleCancel}>Cancel</Button>
+        <Button handleSave={handleSave}>Save</Button>
       </div>
     </div>
   );
