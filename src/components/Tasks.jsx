@@ -89,7 +89,7 @@ function Tasks() {
   return (
     <>
       {taskComponent.length < 1 ? (
-        <h1>No tasks yet</h1>
+        <h1 className="px-4 py-3">No tasks yet</h1>
       ) : (
         <div className="px-4 md:w-full space-y-6">
           <h3

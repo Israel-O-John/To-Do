@@ -42,6 +42,7 @@ function EditTask() {
 
     const updatedTasks = taskComponent.filter((task) => task.id !== selectedId);
     setTaskComponent([taskUpdate, ...updatedTasks]);
+    handleCancel();
   }
 
   function handleCancel() {
