@@ -53,6 +53,19 @@ function App() {
     [taskComponent]
   );
 
+  function taskExists(newTask, taskArr) {
+    return taskArr.some((task) => {
+      return (
+        task.title.trim().toLowerCase() ===
+          newTask.title.trim().toLocaleLowerCase() &&
+        task.startTime.trim().toLowerCase() ===
+          newTask.startTime.trim().toLowerCase() &&
+        task.completeTime.trim().toLowerCase() ===
+          newTask.completeTime.trim().toLowerCase()
+      );
+    });
+  }
+
   return (
     // 2. Pass value to child components
     <Todos.Provider
@@ -69,6 +82,7 @@ function App() {
         setTaskDetail,
         editTask,
         setEditTask,
+        taskExists,
       }}
     >
       <Header />

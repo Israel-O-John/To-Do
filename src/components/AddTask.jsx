@@ -11,7 +11,8 @@ function AddTask() {
   const [startTime, setStartTime] = useState("10:30");
   const [endTime, setEndTime] = useState("21:30");
 
-  const { setCreateTask, setTaskComponent, taskComponents } = useContext(Todos);
+  const { setCreateTask, setTaskComponent, taskComponent, taskExists } =
+    useContext(Todos);
 
   function handleAdd() {
     const newTask = {
@@ -20,8 +21,13 @@ function AddTask() {
       completeTime: endTime,
       id: new Date(),
     };
-    setTaskComponent((tasks) => [newTask, ...tasks]);
 
+    if (taskExists(newTask, taskComponent)) {
+      alert("Task Already Exists");
+      return;
+    }
+
+    setTaskComponent((tasks) => [newTask, ...tasks]);
     setTaskDetails("");
     setStartTime("10:30");
     setEndTime("21:30");

@@ -15,6 +15,7 @@ function EditTask() {
     selectedId,
     setCreateTask,
     setEditTask,
+    setTaskDetail,
     monthsShort,
   } = useContext(Todos);
   const [selectedTask, setSeletedTask] = useState(
