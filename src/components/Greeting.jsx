@@ -3,18 +3,28 @@ import { Todos } from "../App";
 import plusIcon from "../assets/plus-icon.svg";
 
 function Greeting() {
-  const { setCreateTask } = useContext(Todos);
+  const { setCreateTask, taskComponent } = useContext(Todos);
+
   function handleOpen() {
     setCreateTask(true);
   }
+
+  const date = new Date();
+
   return (
     <div className="px-4 py-8 md:w-11/12 md:mx-auto md:flex md:items-start md:justify-between">
       <div>
         <h2 className="text-2xl font-semibold text-gray-900 pb-1">
-          Good morning!
+          {date.getHours() >= 0 && date.getHours() < 12
+            ? "Good morning!"
+            : date.getHours() >= 12 && date.getHours() < 17
+            ? "Good afternoon"
+            : "Good evening"}
         </h2>
         <p className="text-base font-normal text-gray-600 pb-4">
-          You got some task to do.
+          {taskComponent.length < 1
+            ? "Create new tasks"
+            : "You got some task to do."}
         </p>
       </div>
       <button

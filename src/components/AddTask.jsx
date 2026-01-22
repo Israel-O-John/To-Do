@@ -10,9 +10,21 @@ function AddTask() {
   const [taskDetails, setTaskDetails] = useState("");
   const [startTime, setStartTime] = useState("10:30");
   const [endTime, setEndTime] = useState("21:30");
+  const [taskDays, setTaskDays] = useState(new Date());
 
-  const { setCreateTask, setTaskComponent, taskComponent, taskExists } =
-    useContext(Todos);
+  const {
+    setCreateTask,
+    setTaskComponent,
+    taskComponent,
+    taskExists,
+    monthsShort,
+  } = useContext(Todos);
+
+  const taskDay = {
+    day: taskDays.getDate(),
+    month: monthsShort[taskDays.getMonth()],
+    year: taskDays.getFullYear(),
+  };
 
   function handleAdd() {
     const newTask = {
@@ -20,6 +32,7 @@ function AddTask() {
       startTime,
       completeTime: endTime,
       id: new Date(),
+      day: taskDay,
     };
 
     if (taskExists(newTask, taskComponent)) {
@@ -62,14 +75,18 @@ function AddTask() {
       </div>
       <div className="flex items-center justify-between">
         <div className="task-inp">
-          <img src={calendarIcon} alt="calendar icon" />
-          <p className="text-sm">Today</p>
+          {/* <div className="w-4">
+            <img src={calendarIcon} alt="calendar icon" className="w-full" />
+          </div> */}
+          <p className="text-[10px]">
+            {taskDay.day} {taskDay.month}, {taskDay.year}
+          </p>
         </div>
         <div className="task-inp">
           {/* <img src={clockIcon} alt="clock icon" /> */}
           <input
             type="time"
-            className="text-sm"
+            className="text-[10px]"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
           />
@@ -78,7 +95,7 @@ function AddTask() {
           {/* <img src={clockIcon} alt="clock icon" /> */}
           <input
             type="time"
-            className="text-sm"
+            className="text-[10px]"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
           />
