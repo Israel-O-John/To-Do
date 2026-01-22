@@ -35,19 +35,19 @@ const monthsShort = [
   "Dec",
 ];
 
-function createDefaultDay(monthsShort) {
-  const date = new Date();
-  return {
-    day: date.getDate(),
-    month: monthsShort[date.getMonth()],
-    year: date.getFullYear(),
-  };
-}
+// function createDefaultDay(monthsShort) {
+//   const date = new Date();
+//   return {
+//     day: date.getDate(),
+//     month: monthsShort[date.getMonth()],
+//     year: date.getFullYear(),
+//   };
+// }
 
-function normalizeTask(task, monthsShort) {
+function normalizeTask(task) {
   return {
     ...task,
-    day: task.day ?? createDefaultDay(monthsShort),
+    day: task.day ?? "",
   };
 }
 function App() {
