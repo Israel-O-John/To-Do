@@ -20,7 +20,7 @@ function Task({ task, onClick }) {
         </div>
       </div>
       <p className="font-secondaryFont text-sm text-gray-600">
-        {task.day.day} {task.day.month}, {task.day.year}
+        {task.day?.day} {task.day?.month}, {task.day?.year}
       </p>
     </div>
   );

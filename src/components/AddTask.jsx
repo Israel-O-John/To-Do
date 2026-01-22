@@ -79,7 +79,7 @@ function AddTask() {
             <img src={calendarIcon} alt="calendar icon" className="w-full" />
           </div> */}
           <p className="text-[10px]">
-            {taskDay.day} {taskDay.month}, {taskDay.year}
+            {taskDay?.day} {taskDay?.month}, {taskDay?.year}
           </p>
         </div>
         <div className="task-inp">
