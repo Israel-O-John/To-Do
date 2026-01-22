@@ -34,14 +34,34 @@ const monthsShort = [
   "Nov",
   "Dec",
 ];
+
+function createDefaultDay(monthsShort) {
+  const date = new Date();
+  return {
+    day: date.getDate(),
+    month: monthsShort[date.getMonth()],
+    year: date.getFullYear(),
+  };
+}
+
+function normalizeTask(task, monthsShort) {
+  return {
+    ...task,
+    day: task.day ?? createDefaultDay(monthsShort),
+  };
+}
 function App() {
   const [createTask, setCreateTask] = useState(false);
   const [taskDetail, setTaskDetail] = useState(false);
-  const [editTask, setEditTask] = useState(false);
+  const [editTasks, setEditTasks] = useState(false);
   const [taskComponent, setTaskComponent] = useState(function () {
     const tasksData = localStorage.getItem("tasks");
 
-    return tasksData ? JSON.parse(tasksData) : [];
+    if (!tasksData) return [];
+
+    const parsedTasks = JSON.parse(tasksData);
+
+    return parsedTasks.map((task) => normalizeTask(task, monthsShort));
   });
 
   const [selectedId, setSelectedId] = useState("");
@@ -52,6 +72,21 @@ function App() {
     },
     [taskComponent]
   );
+
+  function addTask(newTask) {
+    setTaskComponent((tasks) => [
+      normalizeTask(newTask, monthsShort),
+      ...tasks,
+    ]);
+  }
+
+  function editedTask(updatedTask) {
+    const normalized = normalizeTask(updatedTask, monthsShort);
+
+    setTaskComponent((tasks) =>
+      tasks.map((task) => (task.id === normalized.id ? normalized : task))
+    );
+  }
 
   function taskExists(newTask, taskArr) {
     return taskArr.some((task) => {
@@ -73,16 +108,17 @@ function App() {
         createTask,
         setCreateTask,
         taskComponent,
-        setTaskComponent,
+        addTask,
         months,
         monthsShort,
         selectedId,
         setSelectedId,
         taskDetail,
         setTaskDetail,
-        editTask,
-        setEditTask,
+        editTasks,
+        setEditTasks,
         taskExists,
+        editedTask,
       }}
     >
       <Header />

@@ -12,13 +12,8 @@ function AddTask() {
   const [endTime, setEndTime] = useState("21:30");
   const [taskDays, setTaskDays] = useState(new Date());
 
-  const {
-    setCreateTask,
-    setTaskComponent,
-    taskComponent,
-    taskExists,
-    monthsShort,
-  } = useContext(Todos);
+  const { setCreateTask, addTask, taskComponent, taskExists, monthsShort } =
+    useContext(Todos);
 
   const taskDay = {
     day: taskDays.getDate(),
@@ -40,7 +35,7 @@ function AddTask() {
       return;
     }
 
-    setTaskComponent((tasks) => [newTask, ...tasks]);
+    addTask(newTask);
     setTaskDetails("");
     setStartTime("10:30");
     setEndTime("21:30");
@@ -79,7 +74,7 @@ function AddTask() {
             <img src={calendarIcon} alt="calendar icon" className="w-full" />
           </div> */}
           <p className="text-[10px]">
-            {taskDay?.day} {taskDay?.month}, {taskDay?.year}
+            {taskDay.day} {taskDay.month}, {taskDay.year}
           </p>
         </div>
         <div className="task-inp">

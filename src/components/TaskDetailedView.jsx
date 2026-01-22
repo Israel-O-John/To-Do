@@ -15,7 +15,7 @@ function TaskDetailedView() {
     setCreateTask,
     selectedId,
     setTaskComponent,
-    setEditTask,
+    setEditTasks,
   } = useContext(Todos);
 
   const currentTask = taskComponent.find((task) => task.id === selectedId);
@@ -32,7 +32,7 @@ function TaskDetailedView() {
 
   function handleEdit() {
     // console.log("Hate");
-    setEditTask(true);
+    setEditTasks(true);
     setTaskDetail(false);
     console.log("love");
   }

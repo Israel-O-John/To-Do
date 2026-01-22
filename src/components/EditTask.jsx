@@ -14,9 +14,10 @@ function EditTask() {
     setTaskComponent,
     selectedId,
     setCreateTask,
-    setEditTask,
+    setEditTasks,
     setTaskDetail,
     monthsShort,
+    editedTask,
   } = useContext(Todos);
   const [selectedTask, setSeletedTask] = useState(
     taskComponent.filter((task) => task.id === selectedId)
@@ -30,7 +31,7 @@ function EditTask() {
 
   function handleClose() {
     setCreateTask(false);
-    setEditTask(false);
+    setEditTasks(false);
   }
 
   function handleSave() {
@@ -38,17 +39,16 @@ function EditTask() {
       title: taskTitle,
       startTime: taskStartTime,
       completeTime: taskCompleteTime,
-      id: new Date(),
+      id: selectedId,
     };
 
-    const updatedTasks = taskComponent.filter((task) => task.id !== selectedId);
-    setTaskComponent([taskUpdate, ...updatedTasks]);
+    editedTask(taskUpdate);
     handleCancel();
   }
 
   function handleCancel() {
     setCreateTask(false);
-    setEditTask(false);
+    setEditTasks(false);
   }
 
   return (
@@ -80,14 +80,14 @@ function EditTask() {
           <div className="w-3">
             <img src={calendarIcon} alt="calendar icon" className="w-full" />
           </div>
-          <p className="text-sm">
+          <p className="text-[10px]">
             {taskDate.getDate()} {monthsShort[taskDate.getMonth()]}
           </p>
         </div>
         <div className="task-inp">
           <input
             type="time"
-            className="text-sm"
+            className="text-[10px]"
             value={taskStartTime}
             onChange={(e) => setTaskStartTime(e.target.value)}
           />
@@ -95,7 +95,7 @@ function EditTask() {
         <div className="task-inp">
           <input
             type="time"
-            className="text-sm"
+            className="text-[10px]"
             value={taskCompleteTime}
             onChange={(e) => setTaskCompleteTime(e.target.value)}
           />
