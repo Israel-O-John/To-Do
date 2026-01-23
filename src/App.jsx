@@ -89,6 +89,29 @@ function App() {
     });
   }
 
+  function taskDay(task) {
+    const date = new Date();
+    const today =
+      task.day.day === date.getDate() &&
+      task.day.month === monthsShort[date.getMonth()] &&
+      task.day.year === date.getFullYear();
+
+    const tomorrow =
+      task.day.day + 1 === date.getDate() &&
+      task.day.month === monthsShort[date.getMonth()] &&
+      task.day.year === date.getFullYear();
+
+    const yesterday =
+      task.day.day - 1 === date.getDate() &&
+      task.day.month === monthsShort[date.getMonth()] &&
+      task.day.year === date.getFullYear();
+
+    if (today) return "Today";
+    if (tomorrow) return "Tomorrow";
+    if (yesterday) return "Yesterday";
+    else return `${task.day.day} ${task.day.month} ${task.day.year}`;
+  }
+
   return (
     // 2. Pass value to child components
     <Todos.Provider
@@ -108,6 +131,7 @@ function App() {
         taskExists,
         editedTask,
         deleteTask,
+        taskDay,
       }}
     >
       <Header />

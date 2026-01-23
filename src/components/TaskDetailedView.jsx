@@ -16,10 +16,12 @@ function TaskDetailedView() {
     selectedId,
     setEditTasks,
     deleteTask,
+    taskDay,
   } = useContext(Todos);
 
   const currentTask = taskComponent.find((task) => task.id === selectedId);
 
+  const day = taskDay(currentTask);
   const date = new Date(currentTask.id);
 
   function handleDelete() {
@@ -52,7 +54,7 @@ function TaskDetailedView() {
           <span className="">
             <img src={calendarIcon} alt="calendar icon" />
           </span>
-          {date.getDate()} {months[date.getMonth()]}, {date.getFullYear()}
+          {day}
         </p>
         <p className="flex items-center gap-2">
           <span>

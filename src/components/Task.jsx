@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { Todos } from "../App";
+
 function Task({ task, onClick }) {
+  const { taskDay } = useContext(Todos);
+  const day = taskDay(task);
   return (
     <div
       onClick={onClick}
@@ -18,9 +23,8 @@ function Task({ task, onClick }) {
           </p>
         </div>
       </div>
-      <p className="font-secondaryFont text-sm text-gray-600">
-        {task.day.day} {task.day.month} {task.day.year}
-      </p>
+
+      <p className="font-secondaryFont text-sm text-gray-600">{day}</p>
     </div>
   );
 }

@@ -16,6 +16,7 @@ function EditTask() {
     setEditTasks,
     monthsShort,
     editedTask,
+    taskDay,
   } = useContext(Todos);
   const [selectedTask, setSeletedTask] = useState(
     taskComponent.filter((task) => task.id === selectedId)[0]
@@ -25,6 +26,8 @@ function EditTask() {
   const [taskCompleteTime, setTaskCompleteTime] = useState(
     selectedTask.completeTime
   );
+
+  const day = taskDay(selectedTask);
 
   function handleClose() {
     setCreateTask(false);
@@ -75,10 +78,7 @@ function EditTask() {
       </div>
       <div className="flex items-center justify-between ">
         <div className="task-inp">
-          <p className="text-[10px]">
-            {selectedTask.day.day} {selectedTask.day.month}{" "}
-            {selectedTask.day.year}
-          </p>
+          <p className="text-[10px]">{day}</p>
         </div>
         <div className="task-inp">
           <input
