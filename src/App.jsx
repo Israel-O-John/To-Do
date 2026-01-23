@@ -35,16 +35,7 @@ const monthsShort = [
   "Dec",
 ];
 
-function createDefaultDay(monthsShort) {
-  const date = new Date();
-  return {
-    day: date.getDate(),
-    month: monthsShort[date.getMonth()],
-    year: date.getFullYear(),
-  };
-}
-
-function normalizeTask(task, monthsShort) {
+function normalizeTask(task) {
   return {
     ...task,
     day: task.day ?? "",
@@ -61,7 +52,7 @@ function App() {
 
     const parsedTasks = JSON.parse(tasksData);
 
-    return parsedTasks.map((task) => normalizeTask(task, monthsShort));
+    return parsedTasks.map((task) => normalizeTask(task));
   });
 
   const [selectedId, setSelectedId] = useState("");
@@ -74,14 +65,11 @@ function App() {
   );
 
   function addTask(newTask) {
-    setTaskComponent((tasks) => [
-      normalizeTask(newTask, monthsShort),
-      ...tasks,
-    ]);
+    setTaskComponent((tasks) => [normalizeTask(newTask), ...tasks]);
   }
 
   function editedTask(updatedTask) {
-    const normalized = normalizeTask(updatedTask, monthsShort);
+    const normalized = normalizeTask(updatedTask);
 
     setTaskComponent((tasks) =>
       tasks.map((task) => (task.id === normalized.id ? normalized : task))
