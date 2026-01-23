@@ -1,5 +1,4 @@
 function Task({ task, onClick }) {
-  console.log(task);
   return (
     <div
       onClick={onClick}

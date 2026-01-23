@@ -14,8 +14,8 @@ function TaskDetailedView() {
     setTaskDetail,
     setCreateTask,
     selectedId,
-    setTaskComponent,
     setEditTasks,
+    deleteTask,
   } = useContext(Todos);
 
   const currentTask = taskComponent.find((task) => task.id === selectedId);
@@ -23,18 +23,13 @@ function TaskDetailedView() {
   const date = new Date(currentTask.id);
 
   function handleDelete() {
-    const taskComponentNew = taskComponent.filter(
-      (task) => task.id !== selectedId
-    );
-    setTaskComponent([...taskComponentNew]);
+    deleteTask();
     handleClose();
   }
 
   function handleEdit() {
-    // console.log("Hate");
     setEditTasks(true);
     setTaskDetail(false);
-    console.log("love");
   }
 
   function handleClose() {

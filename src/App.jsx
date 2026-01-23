@@ -35,16 +35,16 @@ const monthsShort = [
   "Dec",
 ];
 
-// function createDefaultDay(monthsShort) {
-//   const date = new Date();
-//   return {
-//     day: date.getDate(),
-//     month: monthsShort[date.getMonth()],
-//     year: date.getFullYear(),
-//   };
-// }
+function createDefaultDay(monthsShort) {
+  const date = new Date();
+  return {
+    day: date.getDate(),
+    month: monthsShort[date.getMonth()],
+    year: date.getFullYear(),
+  };
+}
 
-function normalizeTask(task) {
+function normalizeTask(task, monthsShort) {
   return {
     ...task,
     day: task.day ?? "",
@@ -88,6 +88,13 @@ function App() {
     );
   }
 
+  function deleteTask() {
+    const taskComponentNew = taskComponent.filter(
+      (task) => task.id !== selectedId
+    );
+    setTaskComponent([...taskComponentNew]);
+  }
+
   function taskExists(newTask, taskArr) {
     return taskArr.some((task) => {
       return (
@@ -119,6 +126,7 @@ function App() {
         setEditTasks,
         taskExists,
         editedTask,
+        deleteTask,
       }}
     >
       <Header />

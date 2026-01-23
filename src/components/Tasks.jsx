@@ -29,7 +29,6 @@ function Tasks() {
 
   const { taskComponent, setSelectedId, setTaskDetail, setCreateTask } =
     useContext(Todos);
-  console.log(taskComponent);
 
   const totalItems = taskComponent.length;
   const itemsPerWindow = 4;
