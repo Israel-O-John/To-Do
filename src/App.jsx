@@ -97,12 +97,12 @@ function App() {
       task.day.year === date.getFullYear();
 
     const tomorrow =
-      task.day.day + 1 === date.getDate() &&
+      task.day.day - 1 === date.getDate() &&
       task.day.month === monthsShort[date.getMonth()] &&
       task.day.year === date.getFullYear();
 
     const yesterday =
-      task.day.day - 1 === date.getDate() &&
+      task.day.day + 1 === date.getDate() &&
       task.day.month === monthsShort[date.getMonth()] &&
       task.day.year === date.getFullYear();
 
