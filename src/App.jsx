@@ -47,14 +47,10 @@ function App() {
   const [editTasks, setEditTasks] = useState(false);
   const [taskComponent, setTaskComponent] = useState(function () {
     const tasksData = localStorage.getItem("tasks");
-
     if (!tasksData) return [];
-
     const parsedTasks = JSON.parse(tasksData);
-
     return parsedTasks.map((task) => normalizeTask(task));
   });
-
   const [selectedId, setSelectedId] = useState("");
 
   useEffect(
@@ -67,15 +63,12 @@ function App() {
   function addTask(newTask) {
     setTaskComponent((tasks) => [normalizeTask(newTask), ...tasks]);
   }
-
   function editedTask(updatedTask) {
     const normalized = normalizeTask(updatedTask);
-
     setTaskComponent((tasks) =>
       tasks.map((task) => (task.id === normalized.id ? normalized : task))
     );
   }
-
   function deleteTask() {
     const taskComponentNew = taskComponent.filter(
       (task) => task.id !== selectedId

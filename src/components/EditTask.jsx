@@ -11,22 +11,19 @@ import notificationBell from "../assets/bell-03.svg";
 function EditTask() {
   const {
     taskComponent,
-    setTaskComponent,
     selectedId,
     setCreateTask,
     setEditTasks,
-    setTaskDetail,
     monthsShort,
     editedTask,
   } = useContext(Todos);
   const [selectedTask, setSeletedTask] = useState(
-    taskComponent.filter((task) => task.id === selectedId)
+    taskComponent.filter((task) => task.id === selectedId)[0]
   );
-  const [taskDate, setTaskDate] = useState(new Date(selectedTask[0].id));
-  const [taskTitle, setTaskTitle] = useState(selectedTask[0].title);
-  const [taskStartTime, setTaskStartTime] = useState(selectedTask[0].startTime);
+  const [taskTitle, setTaskTitle] = useState(selectedTask.title);
+  const [taskStartTime, setTaskStartTime] = useState(selectedTask.startTime);
   const [taskCompleteTime, setTaskCompleteTime] = useState(
-    selectedTask[0].completeTime
+    selectedTask.completeTime
   );
 
   function handleClose() {
@@ -40,6 +37,7 @@ function EditTask() {
       startTime: taskStartTime,
       completeTime: taskCompleteTime,
       id: selectedId,
+      day: selectedTask.day,
     };
 
     editedTask(taskUpdate);
@@ -77,11 +75,9 @@ function EditTask() {
       </div>
       <div className="flex items-center justify-between ">
         <div className="task-inp">
-          <div className="w-3">
-            <img src={calendarIcon} alt="calendar icon" className="w-full" />
-          </div>
           <p className="text-[10px]">
-            {taskDate.getDate()} {monthsShort[taskDate.getMonth()]}
+            {selectedTask.day.day} {selectedTask.day.month}{" "}
+            {selectedTask.day.year}
           </p>
         </div>
         <div className="task-inp">

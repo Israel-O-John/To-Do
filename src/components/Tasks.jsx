@@ -1,32 +1,12 @@
 import { Todos } from "../App";
-
 import { useContext, useEffect, useState } from "react";
+
 import Task from "./Task";
 import leftArrow from "../assets/arrow-left.svg";
 import rightArrow from "../assets/arrow-right.svg";
 
-/* 
-const theTasks = [
-  {
-    id: 1,
-    title: "Create Wireframe",
-    startTime: "10:30 am",
-    completedTime: "11:30 am",
-    day: "Today",
-  },
-  {
-    id: 2,
-    title: "Go Shopping",
-    startTime: "12:30 pm",
-    completedTime: "1:30 pm",
-    day: "Today",
-  },
-]; 
-*/
-
 function Tasks() {
   const [currentPage, setCurrentPage] = useState(1);
-
   const { taskComponent, setSelectedId, setTaskDetail, setCreateTask } =
     useContext(Todos);
 
@@ -68,7 +48,6 @@ function Tasks() {
     setCurrentPage(currentPage + 1);
   }
 
-  // Start from here
   function handleTaskClick(task) {
     setCreateTask(true);
     setTaskDetail(true);

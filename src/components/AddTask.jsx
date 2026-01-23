@@ -1,10 +1,9 @@
 import { Todos } from "../App";
+import { useContext, useState } from "react";
 
 import Button from "./Button";
 import closeIcon from "../assets/x-close.svg";
-import calendarIcon from "../assets/calendar.svg";
 import notificationBell from "../assets/bell-03.svg";
-import { useContext, useEffect, useState } from "react";
 
 function AddTask() {
   const [taskDetails, setTaskDetails] = useState("");
@@ -70,15 +69,11 @@ function AddTask() {
       </div>
       <div className="flex items-center justify-between">
         <div className="task-inp">
-          {/* <div className="w-4">
-            <img src={calendarIcon} alt="calendar icon" className="w-full" />
-          </div> */}
           <p className="text-[10px]">
             {taskDay.day} {taskDay.month} {taskDay.year}
           </p>
         </div>
         <div className="task-inp">
-          {/* <img src={clockIcon} alt="clock icon" /> */}
           <input
             type="time"
             className="text-[10px]"
@@ -87,7 +82,6 @@ function AddTask() {
           />
         </div>
         <div className="task-inp">
-          {/* <img src={clockIcon} alt="clock icon" /> */}
           <input
             type="time"
             className="text-[10px]"
