@@ -106,6 +106,8 @@ function App() {
       task.day.month === monthsShort[date.getMonth()] &&
       task.day.year === date.getFullYear();
 
+    console.log(task.day.day);
+
     if (today) return "Today";
     if (tomorrow) return "Tomorrow";
     if (yesterday) return "Yesterday";
