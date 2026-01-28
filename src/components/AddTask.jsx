@@ -19,7 +19,9 @@ function AddTask() {
     taskDaySet,
   } = useContext(Todos);
 
-  const [taskDays, setTaskDays] = useState(taskDaySet);
+  const [taskDays, setTaskDays] = useState(
+    taskDaySet ? new Date(taskDaySet) : new Date()
+  );
   const taskDay = {
     day: taskDays.getDate(),
     month: monthsShort[taskDays.getMonth()],
