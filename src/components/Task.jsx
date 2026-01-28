@@ -2,8 +2,11 @@ import { useContext } from "react";
 import { Todos } from "../App";
 
 function Task({ task, onClick }) {
-  const { taskDay } = useContext(Todos);
+  const { taskDay, convertTo12Hrs } = useContext(Todos);
   const day = taskDay(task);
+
+  const taskTitle = task.title.split(" ", 10).join(" ");
+
   return (
     <div
       onClick={onClick}
@@ -16,10 +19,11 @@ function Task({ task, onClick }) {
         />
         <div className="peer-checked:line-through">
           <h4 className="font-secondaryFont font-medium text-sm text-gray-900 ">
-            {task.title}
+            {taskTitle}
           </h4>
           <p className="font-secondaryFont text-sm text-gray-600">
-            {task.startTime} - {task.completeTime}{" "}
+            {convertTo12Hrs(task.startTime)} -{" "}
+            {convertTo12Hrs(task.completeTime)}
           </p>
         </div>
       </div>

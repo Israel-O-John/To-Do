@@ -9,11 +9,17 @@ function AddTask() {
   const [taskDetails, setTaskDetails] = useState("");
   const [startTime, setStartTime] = useState("10:30");
   const [endTime, setEndTime] = useState("21:30");
-  const [taskDays, setTaskDays] = useState(new Date());
 
-  const { setCreateTask, addTask, taskComponent, taskExists, monthsShort } =
-    useContext(Todos);
+  const {
+    setCreateTask,
+    addTask,
+    taskComponent,
+    taskExists,
+    monthsShort,
+    taskDaySet,
+  } = useContext(Todos);
 
+  const [taskDays, setTaskDays] = useState(taskDaySet);
   const taskDay = {
     day: taskDays.getDate(),
     month: monthsShort[taskDays.getMonth()],
@@ -44,6 +50,7 @@ function AddTask() {
   function handleClose() {
     setCreateTask(false);
   }
+
   return (
     <div className="w-full  md:w-full mt-auto bg-white flex flex-col gap-4 p-6 rounded-tr-3xl rounded-tl-3xl md:rounded-lg border border-gray-100 shadow-xl">
       <div className="flex items-center justify-between">

@@ -10,7 +10,8 @@ function Calendar() {
   const [year, setYear] = useState(TODAY.getFullYear());
   const [month, setMonth] = useState(TODAY.getMonth());
 
-  const { months, monthsShort } = useContext(Todos);
+  const { months, monthsShort, setTaskDaySet, setCreateTask } =
+    useContext(Todos);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -63,6 +64,11 @@ function Calendar() {
     } else {
       setMonth((month) => month - 1);
     }
+  }
+
+  function addTaskFromCalendar(cell) {
+    setTaskDaySet(new Date(year, month, cell.day));
+    setCreateTask(true);
   }
 
   return (
@@ -118,6 +124,7 @@ function Calendar() {
                 ? "text-xs font-secondaryFont font-medium text-white bg-button-blue-active"
                 : ""
             }`}
+            onClick={() => addTaskFromCalendar(cell)}
           >
             {cell.day}
           </div>

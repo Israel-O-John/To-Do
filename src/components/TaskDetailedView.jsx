@@ -17,6 +17,7 @@ function TaskDetailedView() {
     setEditTasks,
     deleteTask,
     taskDay,
+    convertTo12Hrs,
   } = useContext(Todos);
 
   const currentTask = taskComponent.find((task) => task.id === selectedId);
@@ -60,7 +61,8 @@ function TaskDetailedView() {
           <span>
             <img src={clockIcon} alt="clock icon" />
           </span>
-          {currentTask.startTime} - {currentTask.completeTime}
+          {convertTo12Hrs(currentTask.startTime)} -{" "}
+          {convertTo12Hrs(currentTask.completeTime)}
         </p>
       </div>
       <div className="flex items-center justify-between">

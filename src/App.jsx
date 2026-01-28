@@ -52,6 +52,7 @@ function App() {
     return parsedTasks.map((task) => normalizeTask(task));
   });
   const [selectedId, setSelectedId] = useState("");
+  const [taskDaySet, setTaskDaySet] = useState("");
 
   useEffect(
     function () {
@@ -90,28 +91,37 @@ function App() {
   }
 
   function taskDay(task) {
-    const date = new Date();
-    const today =
-      task.day.day === date.getDate() &&
-      task.day.month === monthsShort[date.getMonth()] &&
-      task.day.year === date.getFullYear();
+    const today = new Date();
+    const taskDate = new Date(
+      task.day.year,
+      new Date(`${task.day.month}1`).getMonth(),
+      task.day.day
+    );
 
-    const tomorrow =
-      task.day.day - 1 === date.getDate() &&
-      task.day.month === monthsShort[date.getMonth()] &&
-      task.day.year === date.getFullYear();
+    today.setHours(0, 0, 0, 0);
+    taskDate.setHours(0, 0, 0, 0);
 
-    const yesterday =
-      task.day.day + 1 === date.getDate() &&
-      task.day.month === monthsShort[date.getMonth()] &&
-      task.day.year === date.getFullYear();
+    const difference =
+      (taskDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
 
-    console.log(task.day.day);
+    if (difference === 0) return "Today";
+    if (difference === 1) return "Tomorrow";
+    if (difference === -1) return "Yesterday";
+    return `${task.day.day} ${task.day.month} ${task.day.year}`;
+  }
 
-    if (today) return "Today";
-    if (tomorrow) return "Tomorrow";
-    if (yesterday) return "Yesterday";
-    else return `${task.day.day} ${task.day.month} ${task.day.year}`;
+  function convertTo12Hrs(timeStr) {
+    let [hours, minutes] = timeStr.split(":");
+
+    hours = Number(hours);
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return `${hours}:${minutes}${ampm}`;
   }
 
   return (
@@ -134,6 +144,9 @@ function App() {
         editedTask,
         deleteTask,
         taskDay,
+        convertTo12Hrs,
+        taskDaySet,
+        setTaskDaySet,
       }}
     >
       <Header />
