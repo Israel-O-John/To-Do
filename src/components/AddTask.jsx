@@ -11,7 +11,7 @@ function AddTask() {
   const [endTime, setEndTime] = useState("21:30");
 
   const {
-    setCreateTask,
+    handleCloseTask,
     addTask,
     taskComponent,
     taskExists,
@@ -46,11 +46,8 @@ function AddTask() {
     setTaskDetails("");
     setStartTime("10:30");
     setEndTime("21:30");
-    setCreateTask(false);
-  }
-
-  function handleClose() {
-    setCreateTask(false);
+    // setCreateTask(false);
+    handleCloseTask();
   }
 
   return (
@@ -62,7 +59,7 @@ function AddTask() {
         <img
           src={closeIcon}
           alt="Close Icon"
-          onClick={handleClose}
+          onClick={handleCloseTask}
           className="cursor-pointer"
         />
       </div>
@@ -109,7 +106,7 @@ function AddTask() {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <Button handleClose={handleClose}>Cancel</Button>
+        <Button handleClose={handleCloseTask}>Cancel</Button>
         <Button handleAdd={handleAdd}>Add</Button>
       </div>
     </div>

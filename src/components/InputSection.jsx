@@ -7,7 +7,7 @@ import EditTask from "./EditTask";
 import TaskDetailedView from "./TaskDetailedView";
 
 function InputSection() {
-  const { createTask, taskDetail, editTasks } = useContext(Todos);
+  const { createTask, taskDetail, editTask } = useContext(Todos);
 
   return (
     <div className="md:border-l md:pl-5 md:w-[30%] h-dvh ">
@@ -15,7 +15,7 @@ function InputSection() {
         <div className="w-screen h-dvh bg-black/25 absolute top-0 left-0 flex flex-col  md:w-full md:relative md:block md:bg-inherit ">
           {taskDetail ? (
             <TaskDetailedView />
-          ) : editTasks ? (
+          ) : editTask ? (
             <EditTask />
           ) : (
             <AddTask />

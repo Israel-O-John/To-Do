@@ -3,11 +3,7 @@ import { Todos } from "../App";
 import plusIcon from "../assets/plus-icon.svg";
 
 function Greeting() {
-  const { setCreateTask, taskComponent } = useContext(Todos);
-
-  function handleOpen() {
-    setCreateTask(true);
-  }
+  const { handleOpenTask, taskComponent } = useContext(Todos);
 
   const date = new Date();
 
@@ -29,7 +25,7 @@ function Greeting() {
       </div>
       <button
         className="items-center gap-2 text-sm font-semibold bg-button-blue flex text-white px-4 py-2 rounded-lg hover:bg-button-blue-active transition-all duration-300"
-        onClick={handleOpen}
+        onClick={handleOpenTask}
       >
         <img src={plusIcon} alt="plus icon" />
         Create New Task

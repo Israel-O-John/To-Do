@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import Header from "./components/Header";
 import Greeting from "./components/Greeting";
 import Main from "./components/Main";
@@ -41,10 +41,37 @@ function normalizeTask(task) {
     day: task.day ?? "",
   };
 }
+function reducer(state, action) {
+  switch (action.type) {
+    case "openTask":
+      return { ...state, createTask: true };
+    case "closeTask":
+      return { ...state, createTask: false };
+    case "openTaskDetail":
+      return { ...state, taskDetail: true };
+    case "closeTaskDetail":
+      return { ...state, taskDetail: false };
+    case "openEditTask":
+      return { ...state, editTask: true };
+    case "closeEditTask":
+      return { ...state, editTask: false };
+
+    default:
+      break;
+  }
+}
+
 function App() {
-  const [createTask, setCreateTask] = useState(false);
-  const [taskDetail, setTaskDetail] = useState(false);
-  const [editTasks, setEditTasks] = useState(false);
+  const initialState = {
+    createTask: false,
+    taskDetail: false,
+    editTask: false,
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { createTask, taskDetail, editTask } = state;
+  // const [taskDetail, setTaskDetail] = useState(false);
+  // const [editTasks, setEditTasks] = useState(false);
   const [taskComponent, setTaskComponent] = useState(function () {
     const tasksData = localStorage.getItem("tasks");
     if (!tasksData) return [];
@@ -124,12 +151,33 @@ function App() {
     return `${hours}:${minutes}${ampm}`;
   }
 
+  function handleOpenTask() {
+    dispatch({ type: "openTask" });
+  }
+  function handleCloseTask() {
+    dispatch({ type: "closeTask" });
+  }
+
+  function handleOpenTaskDetail() {
+    dispatch({ type: "openTaskDetail" });
+  }
+  function handleCloseTaskDetail() {
+    dispatch({ type: "closeTaskDetail" });
+  }
+  function handleOpenEditTask() {
+    dispatch({ type: "openEditTask" });
+  }
+  function handleCloseEditTask() {
+    dispatch({ type: "closeEditTask" });
+  }
+
   return (
     // 2. Pass value to child components
     <Todos.Provider
       value={{
         createTask,
-        setCreateTask,
+        handleOpenTask,
+        handleCloseTask,
         taskComponent,
         addTask,
         months,
@@ -137,9 +185,11 @@ function App() {
         selectedId,
         setSelectedId,
         taskDetail,
-        setTaskDetail,
-        editTasks,
-        setEditTasks,
+        handleOpenTaskDetail,
+        handleCloseTaskDetail,
+        editTask,
+        handleOpenEditTask,
+        handleCloseEditTask,
         taskExists,
         editedTask,
         deleteTask,

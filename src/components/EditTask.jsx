@@ -12,8 +12,8 @@ function EditTask() {
   const {
     taskComponent,
     selectedId,
-    setCreateTask,
-    setEditTasks,
+    handleCloseTask,
+    handleCloseEditTask,
     monthsShort,
     editedTask,
     taskDay,
@@ -30,8 +30,8 @@ function EditTask() {
   const day = taskDay(selectedTask);
 
   function handleClose() {
-    setCreateTask(false);
-    setEditTasks(false);
+    handleCloseTask();
+    handleCloseEditTask();
   }
 
   function handleSave() {
@@ -48,8 +48,8 @@ function EditTask() {
   }
 
   function handleCancel() {
-    setCreateTask(false);
-    setEditTasks(false);
+    handleCloseTask();
+    handleCloseEditTask();
   }
 
   return (

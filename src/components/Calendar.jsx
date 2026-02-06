@@ -10,7 +10,7 @@ function Calendar() {
   const [year, setYear] = useState(TODAY.getFullYear());
   const [month, setMonth] = useState(TODAY.getMonth());
 
-  const { months, monthsShort, setTaskDaySet, setCreateTask } =
+  const { months, monthsShort, setTaskDaySet, handleOpenTask } =
     useContext(Todos);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -68,7 +68,7 @@ function Calendar() {
 
   function addTaskFromCalendar(cell) {
     setTaskDaySet(new Date(year, month, cell.day));
-    setCreateTask(true);
+    handleOpenTask();
   }
 
   return (

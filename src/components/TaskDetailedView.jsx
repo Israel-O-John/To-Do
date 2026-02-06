@@ -11,10 +11,10 @@ function TaskDetailedView() {
   const {
     taskComponent,
     months,
-    setTaskDetail,
-    setCreateTask,
+    handleCloseTaskDetail,
+    handleCloseTask,
     selectedId,
-    setEditTasks,
+    handleOpenEditTask,
     deleteTask,
     taskDay,
     convertTo12Hrs,
@@ -31,13 +31,13 @@ function TaskDetailedView() {
   }
 
   function handleEdit() {
-    setEditTasks(true);
-    setTaskDetail(false);
+    handleOpenEditTask();
+    handleCloseTaskDetail();
   }
 
   function handleClose() {
-    setTaskDetail(false);
-    setCreateTask(false);
+    handleCloseTaskDetail();
+    handleCloseTask();
   }
 
   return (

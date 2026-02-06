@@ -7,7 +7,7 @@ import rightArrow from "../assets/arrow-right.svg";
 
 function Tasks() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { taskComponent, setSelectedId, setTaskDetail, setCreateTask } =
+  const { taskComponent, setSelectedId, handleOpenTaskDetail, handleOpenTask } =
     useContext(Todos);
 
   const totalItems = taskComponent.length;
@@ -49,8 +49,8 @@ function Tasks() {
   }
 
   function handleTaskClick(task) {
-    setCreateTask(true);
-    setTaskDetail(true);
+    handleOpenTask();
+    handleOpenTaskDetail();
     setSelectedId(task.id);
   }
 
